@@ -33,7 +33,7 @@
         </div>
         <div>
           <strong>Valor Venda:</strong>
-          <input class="form-control mr-sm-2" type="text" name="valorVenda"  required [(ngModel)]="produto.valorVenda" #valorVenda="ngModel">          
+          <input class="form-control mr-sm-2" type="number" name="valorVenda"  required [(ngModel)]="produto.valorVenda" #valorVenda="ngModel">          
         </div>
         <div>
           <strong>URL Imagem:</strong>
@@ -42,7 +42,7 @@
         <div class="card-footer">
           <div class="btn-group d-flex">
             <button class="btn btn-primary w-100" [disabled]="!loginForm.valid" type="submit">Salvar</button>
-            <button class="btn btn-success w-100">Cancelar</button>
+            <button class="btn btn-success w-100" [routerLink]="['/listar/']">Voltar</button>
           </div>
         </div>
       </div>

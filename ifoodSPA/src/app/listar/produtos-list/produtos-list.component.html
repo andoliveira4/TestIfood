@@ -1,6 +1,7 @@
 
 <div class="container mt-5">
-  <div class="row">
+  <p><button class="btn btn-success" [routerLink]="['/criar/']">Criar Produto</button></p>
+  <div class="row">    
     <div *ngFor="let produto of produtos" class="col-lg-2 col-md-3 col-sm-6">
       <app-produtos-card [produto]="produto"></app-produtos-card>
     </div>

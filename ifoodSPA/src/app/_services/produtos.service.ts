@@ -13,19 +13,27 @@ export class ProdutosService {
   apiCoreUrl = environment.apiCoreUrl;
   resultado: Produto[];
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-ListaProdutos(): Observable<Produto[]> {
-  return this.http.get<Produto[]>(this.apiCoreUrl + 'listaprodutos');
+  ListaProdutos(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.apiCoreUrl + 'listaprodutos');
+  }
+
+  CriaProduto(produto: Produto): Observable<boolean> {
+    return this.http.post<boolean>(this.apiCoreUrl + 'criaproduto', produto);
+  }
+
+  CarregaProduto(id: number): Observable<Produto> {
+    return this.http.get<Produto>(this.apiCoreUrl + 'consultaproduto?id=' + id);
+  }
+
+  AlteraProduto(produto: Produto): Observable<boolean> {
+    return this.http.post<boolean>(this.apiCoreUrl + 'alteraproduto', produto);
+  }
+
+  RemoveProduto(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.apiCoreUrl + 'removeproduto?id=' + id);
+  }
 }
 
-CarregaProduto(id: number): Observable<Produto> {
-  return this.http.get<Produto>(this.apiCoreUrl + 'consultaproduto?id=' + id);
-}
 
-AlteraProduto(produto: Produto): Observable<Produto> {
-  console.log(produto);
-  return this.http.post<any>(this.apiCoreUrl + 'alteraproduto', produto);
-}
-
-}

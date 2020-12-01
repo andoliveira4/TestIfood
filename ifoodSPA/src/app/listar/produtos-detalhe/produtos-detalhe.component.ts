@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/_models/produto';
 import { ProdutosService } from 'src/app/_services/produtos.service';
 
@@ -11,7 +11,7 @@ import { ProdutosService } from 'src/app/_services/produtos.service';
 export class ProdutosDetalheComponent implements OnInit {
   produto: any = {};
 
-  constructor(private produtosService: ProdutosService, private route: ActivatedRoute) { }
+  constructor(private produtosService: ProdutosService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.CarregaProduto();
@@ -29,17 +29,16 @@ export class ProdutosDetalheComponent implements OnInit {
   }
 
   AlteraProduto() {
-
-    
-    this.produtosService.AlteraProduto(this.produto).subscribe((obj: any) => {
-      
-      console.log(obj);
-    }, error =>
-    {
-      alert('Houve um problema no carregamento do produto');
+    this.produtosService.AlteraProduto(this.produto).subscribe((retorno: boolean) => {
+      console.log(retorno);
+      if (retorno) {
+        this.router.navigate(['/listar']);
+      } else {
+        alert('Houve um problema na gravacao do produto');
+      }
+    }, error => {
+      alert('Houve um problema na gravacao do produto');
       console.log(error);
     });
-    
   }
-
 }
